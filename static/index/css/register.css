@@ -1,0 +1,21 @@
+* { margin:0; padding:0; -webkit-text-size-adjust:none;} /* for Chrome fixed */
+* { margin:0; padding:0; }
+input,button,select,textarea{font:12px/24px Arial, Helvetica, '宋体',sans-serif; margin:0px; padding:0px;vertical-align: middle;font-weight:normal; *overflow: visible; line-height: normal;}
+/* Lists */
+ul,ol         { list-style:none; }
+.clearfix:after { clear: both; content: " "; display: block; font-size: 0; height: 0; visibility: hidden;}
+.clear{ clear:both;}
+
+.input-text,.textarea-text{  padding:0px 5px; border:1px solid #d8d8d8;}
+
+.ul-register{ text-align:center; padding-top:25px;padding-bottom:10px; }
+		.ul-register li{ font-size:14px; padding-bottom:20px;}
+			.ul-register label{ width:70px; display:inline-block; text-align:right; margin-right:18px;}
+			.ul-register li .input-text{ width:258px; height:32px; line-height:32px;}
+		.ul-register .termswrap{ padding-left:110px;}
+			.ul-register li .terms{ padding-left:10px; color:#888; font-size:13px;}
+			.ul-register li a.highlight{ color:#327ec1;}
+			.ul-register li a.highlight:hover{ text-decoration:underline;}
+		.ul-register .btn-register{ padding-left:40px; padding-top:10px; }
+			.ul-register .btn-register button{ font-family:"微软雅黑";padding:4px 20px;*padding:2px 20px; cursor:pointer;}
+	.register-line{ height:9px;background:url(..iImages/bg_register_bottom.png) no-repeat bottom;}

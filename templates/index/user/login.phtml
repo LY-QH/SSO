@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title><?php echo $title?></title>
+    <meta name="keywords" content="<?php echo $keywords?>" />
+    <meta name="description" content="<?php echo $description?>" />
+    <?php
+$bootstrap_prefix = MOD != DEV?  '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1': '/static/index';
+$jquery_prefix = MOD != DEV? '//ajax.microsoft.com/ajax/jquery': '/static/index/js';
+    ?>
+    <link href="<?php echo $bootstrap_prefix?>/css/bootstrap.css" rel="stylesheet" />
+    <link href="/static/index/css/style.css" rel="stylesheet" />
+    <script type="text/javascript" src="<?php echo $jquery_prefix?>/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="/static/index/js/bootstrap-carousel.js"></script>
+    <script type="text/javascript" src="/static/index/js/bootstrap-transition.js"></script>
+    <script type="text/javascript" src="/static/index/js/placeHolder.js"></script>
+    <script type="text/javascript" src="/static/public/common.js"></script>
+    <script language="javascript">
+    $(document).ready(function() { 
+      
+
+        var getVal = '<?php echo htmlspecialchars($_GET['referer'])?>';
+        if(getVal.length > 0){
+          if ($.trim($('#account').val())) $('#password').focus();
+          else $('#account').focus();
+          var items = $('.item');
+          $(items).each(function(i){
+            var q = getVal.indexOf($(this).attr('rel'));
+            if(q > 0){
+              $('#myCarousel').carousel(i);
+            }
+          })
+            $('#myCarousel').carousel('pause');
+        }
+
+        /*
+        $('.login').hover(function(){
+            $('#myCarousel').carousel('pause'); 
+        },function(){
+            $('#myCarousel').carousel('cycle'); 
+        })*/
+        
+        $('#myCarousel').on('slid', function () {
+            $.refUrl();
+        })
+        
+        jQuery.refUrl = function(){
+              var c = $('.carousel-inner > .active').attr('rel');
+              $('#referer').val('http://' + c);
+         };
+         
+         $.refUrl();
+        /*
+        jQuery.focusblur = function(focusid, str) {
+             $(focusid).focus(function(){
+    			var thisval = $(this).val();
+    			if(thisval==str || thisval.length < 1){
+                     $(this).val('');
+                }
+             });
+             $(focusid).blur(function(){
+    			var thisval = $(this).val();
+    			if(thisval.length < 1){
+                     $(this).val(str);
+                }
+             });
+             
+         };*/
+         /* 如果是IE6, 7 则执行JS */
+         if(navigator.userAgent.indexOf("MSIE 7.0")>0 || navigator.userAgent.indexOf("MSIE 6.0")>0 || navigator.userAgent.indexOf("MSIE 8.0")>0){  
+            var oForm1 = document.getElementById('logForm');
+            var oForm1Inputs = oForm1.getElementsByTagName('input');
+            for(var i=0;i<oForm1Inputs.length;i++){
+                placeHolder(oForm1Inputs[i],true);
+            }
+         } 
+         
+         
+        /* 计算底部居中 */
+        var w = document.body.clientWidth;
+        var fotWidth = $('.copyright').width();
+        var fotLeft  = Math.ceil((w - fotWidth)/2);
+        $('.copyright').css('left', fotLeft + 'px'); 
+        
+    }); 
+    </script>
+</head>
+
+<body>
+    <div class="login">
+        <div class="header" id="header"></div>
+        <div class="web_qr_login">
+            <div class="web_qr_login_show">
+                <div class="web_login">
+                    <div class="login_form">
+                        <form action="/user/login" method="post" id="logForm">
+                            <div id="uinArea" class="uinArea">
+                                <div class="inputOuter">
+                                <input type="text" value="<?php if(!empty($_COOKIE['account'])) echo $_COOKIE['account']?>" name="account" class="inputstyle" id="account" placeholder="<?php echo lang('{%username_or_email%}')?>"  /> 
+                                </div>
+                            </div>
+                            <div id="pwdArea" class="pwdArea">
+                                <div class="inputOuter">
+                                    <input type="password" value="" name="password" class="inputstyle" id="password"  placeholder="<?php echo lang('{%password%}')?>" /> 
+                                </div>
+                            </div>
+                            <div class="submit">
+                                <a href="javascript:void(0);" class="login_button">
+                                    <input type="submit" id="login_button" class="btn" value="<?php echo lang('{%login%}')?>" tabindex="6" />
+                                </a>
+                                <?php if (!empty($_GET['referer'])):?>
+                                <input type="hidden" name="referer" id="referer" value="<?php echo htmlspecialchars($_GET['referer'])?>" />
+                                <?php endif;?>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="bottom_web" class="bottom" style="display: block;">
+                        <!--<a target="_blank" id="forgetpwd" class="link" href="/user/resetpassword_step1"><?php /*echo lang('{%forget_pwd%}')*/?></a>
+                        <span class="dotted">|</span>-->
+						<?php if(!empty($GLOBALS['config']['open_id_logins']) && count($GLOBALS['config']['open_id_logins'])) { foreach($GLOBALS['config']['open_id_logins'] as $open_id){?>
+						<a href="<?php echo $open_id['url']?>" title="<?php echo $open_id['name']?>"><img src="<?php echo $open_id['pic']?>"></a>
+						<span class="dotted">|</span>
+						<?php }}?>
+                        <a target="_blank" href="/user/register" id="feedback_web" class="link"><?php echo lang('{%register%}')?></a>
+                        <span class="dotted">|</span>
+                        <a target="_blank" href="" id="feedback_web" class="link"><?php echo lang('{%feedback%}')?></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </div>
+  
+  <div class="copyright">
+    	<p class="copyright_link">
+    		<a target="_blank" href="http://t.qq.com/qzone"><?php echo lang('{%weibo%}')?></a> |
+    		<a target="_blank" href=""><?php echo lang('{%about_us%}')?></a> |
+    		<a target="_blank" href=""><?php echo lang('{%friendly_link%}')?></a> |
+    		<a target="_blank" href=""><?php echo lang('{%infringement_complaints%}')?></a> |
+    		<a target="_blank" href="">Complaint Guidelines</a>
+    	</p>
+    	<p class="copyright_en">Copyright &copy; 2013 - 2014 BGS. All Rights Reserved. </p>
+    	<p class="copyright_cn"><?php echo lang('{%baiJi_tech_company%}')?> <a target="_blank" href=""><?php echo lang('{%copy_right%}')?></a> <a target="_blank" href=""><?php echo lang('{%icp%}')?></a></p>
+  </div>
+  
+  <div id="myCarousel" class="carousel slide" data-interval="20000">
+    <!--<ol class="carousel-indicators">
+       <li data-target="#myCarousel" data-slide-to="0"  class="" ></li>
+       <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+    </ol>-->
+    <div class="carousel-inner">
+        <?php foreach($GLOBALS['config']['client_hosts'] as $host=>$config):?>
+        <?php if(empty($config['pic'])) continue?>
+        <div class="item" rel="<?php echo $host?>">
+        <img src="<?php echo $config['pic']?>" alt="<?php echo $config['name']?>" />
+        </div>
+        <?php endforeach;?>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+  </div>
+  
+  <script type="text/javascript"> 
+      $('#myCarousel').carousel('next');
+  </script>
+</body>
+</html>

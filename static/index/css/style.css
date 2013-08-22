@@ -1,0 +1,139 @@
+body {
+    font-family: "Tahoma,Verdana,Arial,宋体";
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    font-size: 1.2rem;
+    line-height: 1.333;
+}
+
+.login, .login_no_qlogin {
+    margin:0 auto;
+    position: absolute;
+    width: 418px;
+    right:10%;
+    top:25%;
+    z-index:999;
+    background:#fff;
+    border-radius:4px;
+    box-shadow:2px 2px rgba(0, 0, 0, 0.1);
+}
+.header {
+    border-bottom: 1px solid #E2E2E2;
+    font-family: "Tahoma,Verdana,Arial,宋体";
+    height: 50px;
+    position: relative;
+}
+.web_qr_login {
+    height: 265px;
+    overflow: hidden;
+    position: relative;
+}
+
+.web_qr_login .web_qr_login_show {
+    position: absolute;
+    top: 0;
+}
+.web_login {
+    
+    position: relative;
+    width: 418px;
+}
+.web_login .pwdArea {
+    height: 55px;
+    position: relative;
+    z-index: 3;
+}
+
+.web_login .uinArea {
+    height: 55px;
+    position: relative;
+    z-index: 10;
+}
+.web_login .input_tips, .web_login .input_tips_focus {
+    color: #AAAAAA;
+    cursor: text;
+    font-size: 14px;
+    left: 13px;
+    line-height: 16px;
+    position: absolute;
+    top: 13px;
+}
+.web_login .inputOuter {
+    /*background: url("../images/icon_3.png") no-repeat scroll -1px -1px transparent;*/
+    height: 42px;
+    width: 272px;
+}
+
+.web_login .login_form {
+    margin: 40px auto;
+	*margin: 40px auto 20px auto;
+    width: 272px;
+}
+.web_login .inputstyle {
+    color: #333333;
+    font-family: Verdana,Tahoma,Arial;
+    font-size: 16px;
+    height: 18px;
+    /*left: 2px;*/
+    line-height: 18px;
+    padding: 11px 0 11px 10px;
+    /*position: relative;
+    top: 2px;*/
+    width: 258px;
+}
+.web_login .submit {
+    height: 40px;
+    position: relative;
+}
+
+.web_login .login_button {
+    left: 0;
+    outline: medium none;
+    position: absolute;
+}
+
+
+.web_login .login_button .btn {
+    background: url("../images/icon_3.png") no-repeat scroll 0 -90px transparent;
+    border: medium none;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    height: 35px;
+    line-height: 35px;
+    width: 115px;
+}
+.bottom {
+    margin-right:10px;
+    font-size: 12px;
+    height: 16px;
+    /*
+    position: relative;
+    right: 10px;*/
+    text-align: right;
+}
+
+.bottom .dotted {
+    color: #BFBFBF;
+    margin: 0 5px;
+}
+
+.bottom .link {
+    color: #666666;
+}
+
+.copyright {
+	position: absolute;
+    text-align: center;
+	top:88%;
+	z-index:999;
+	font-size:12px;
+	color:#fff;
+}
+
+.copyright a {
+	color:#fff;
+}

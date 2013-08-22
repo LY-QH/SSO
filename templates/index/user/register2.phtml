@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title></title>
+
+    <link rel='stylesheet' href='/static/index/css/reg.css' type='text/css' media='all' />
+    
+</head>
+
+<body class="login login-action-login wp-core-ui">
+	<div id="login">
+		<!--<h1><a href="" title=""></a></h1>-->
+	
+        <form name="loginform" id="loginform" action="/user/register" method="post">
+        	<p>
+        		<label for="user_name"><?php echo lang('{%username%}')?><br />
+        		<input type="text" name="user_name" id="user_name" class="input" value="" size="20" /></label>
+        	</p>
+        	<p>
+        		<label for="user_email"><?php echo lang('{%email%}')?><br />
+        		<input type="text" name="email" id="user_email" class="input" value="" size="20" /></label>
+        	</p>
+            <p>
+        		<label for="user_pass"><?php echo lang('{%password%}')?><br />
+        		<input type="password" name="password" id="user_pass" class="input" value="" size="20" /></label>
+        	</p>
+        	<p class="forgetmenot">
+                <label for="show-password">
+                    <input type="checkbox" id="show-password" onclick="showText(document.getElementsByName('password')[0], this.checked)" /> <?php echo lang('{%display_pwd%}')?>
+                </label>
+            </p>
+                <input type="hidden" name="signature" value="<?php echo $signature?>" />
+        	<p class="submit">
+        		<input type="submit" name="submit" id="submit" class="button button-primary button-large" value="<?php echo lang('{%register%}')?>" />
+        	</p>
+        </form>
+        
+        <p id="nav">
+            <?php echo lang('{%have_account_pls%}')?><a href="/user/login" title="<?php echo lang('{%login%}')?>"><?php echo lang('{%login%}')?></a>
+        </p>
+
+        <script type="text/javascript">
+            function showText(elm, text) {
+              elm.type = text ? 'text': 'password';
+              moveEnd(elm);
+            }
+            //焦点放在字符末尾
+            function moveEnd(obj) {
+            	obj.focus();
+            	var len = obj.value.length;
+            	if (document.selection) {
+            		var sel = obj.createTextRange();
+            		sel.moveStart('character', len);
+            		sel.collapse();
+            		sel.select();
+            	} else if (typeof obj.selectionStart == 'number'
+            			&& typeof obj.selectionEnd == 'number') {
+            		obj.selectionStart = obj.selectionEnd = len;
+            	}
+            }
+            function wp_attempt_focus(){
+                setTimeout( function(){ try{
+                d = document.getElementById('user_login');
+                d.focus();
+                d.select();
+                } catch(e){}
+                }, 200);
+            }
+            
+            wp_attempt_focus();
+            if(typeof wpOnload=='function')wpOnload();
+        </script>
+
+	</div>
+	<div class="clear"></div>
+</body>
+</html>
+	
